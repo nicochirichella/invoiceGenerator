@@ -225,8 +225,9 @@ const styles = StyleSheet.create({
 // Create Document Component
 const InvoicePDF = ({ data }) => {
   // Calculate totals
-  const servicesTotal = data.services.reduce((total, service) => total + service.hours * service.rate, 0)
-  const totalAmount = servicesTotal + (data.bonus || 0)
+  const servicesTotal = data.services.reduce((total, service) => total + service.hours * service.rate, 0);
+  const bonusTotal = data.bonuses ? data.bonuses.reduce((total, bonus) => total + bonus.amount, 0) : 0;
+  const totalAmount = servicesTotal + bonusTotal;
 
   return (
     <Document>
